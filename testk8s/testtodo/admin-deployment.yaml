@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-app-deploy
+  labels:
+    name: admin-app-deploy
+    app: admin-app-panel
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: admin-app-pod
+      labels:
+        name: admin-app-pod
+        app: admin-app-panel
+    spec:
+      containers: 
+      - name: admin-app-panel
+        image: thoba/todo-list-app:latest
+  selector:
+    matchLabels:
+      name: admin-app-pod
+      app: admin-app-panel
+
